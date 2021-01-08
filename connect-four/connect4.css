@@ -1,8 +1,10 @@
 /* game board table */
 div#game{
-  position: absolute;
-  display: flex;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: auto;
   background-color: cornflowerblue;
+  display: block;
 }
 #board td {
   width: 50px;
@@ -17,6 +19,14 @@ div#game{
   margin: 5px;
   width: 80%;
   height: 80%;
+}
+
+.red {
+color: red;
+}
+
+.blue {
+color: blue;
 }
 
 /* TODO: make pieces red/blue,  depending on player 1/2 piece */
