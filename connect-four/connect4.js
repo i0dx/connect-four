@@ -56,8 +56,8 @@ function makeHtmlBoard() {
 
 function findSpotForCol(x) {
   // TODO: write the real version of this, rather than always returning 0
-  for(i = HEIGHT -1; i >=0; i--){
-    if(!board[x][i]){
+  for(i = HEIGHT - 1; i >=0; i--){
+    if(!board[i][x]){
       return i;
     }
   }
@@ -70,13 +70,17 @@ function placeInTable(y, x) {
   // TODO: make a div and insert into correct table cell
   const newPiece = document.createElement('div')
   newPiece.classList.add('piece');
-  newPiece.classList.add()
+  newPiece.classList.add(`p${currPlayer}`);
+  document.getElementById(`${y}-${x}`).append(newPiece);
+  
+
 }
 
 /** endGame: announce game end */
 
 function endGame(msg) {
   // TODO: pop up alert message
+  alert(msg)
 }
 
 /** handleClick: handle click of column top to play piece */
@@ -94,6 +98,7 @@ function handleClick(evt) {
   // place piece in board and add to HTML table
   // TODO: add line to update in-memory board
   placeInTable(y, x);
+  board[y][x] = currPlayer
 
   // check for win
   if (checkForWin()) {
@@ -102,9 +107,13 @@ function handleClick(evt) {
 
   // check for tie
   // TODO: check if all cells in board are filled; if so call, call endGame
+  if(board[0].every(val=> val)){
+    return endGame("It's no one's game!");
+  }
 
   // switch players
   // TODO: switch currPlayer 1 <-> 2
+  currPlayer === 1 ? currPlayer = 2 : currPlayer = 1;
 }
 
 /** checkForWin: check board cell-by-cell for "does a win start here?" */
